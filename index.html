@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You for Your Payment</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: rgba(255,255,255,0.08);
+      --card2: rgba(255,255,255,0.12);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #f59e0b;
+      --accent2: #22c55e;
+      --line: rgba(255,255,255,0.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(245,158,11,0.26), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,0.18), transparent 24%),
+        linear-gradient(135deg, #111827, #0f172a 55%, #1e293b);
+      padding: 24px;
+    }
+    .wrap {
+      width: min(920px, 100%);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .hero, .side {
+      backdrop-filter: blur(20px);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .hero { padding: 36px; position: relative; }
+    .badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(245,158,11,0.14);
+      border: 1px solid rgba(245,158,11,0.35);
+      color: #fde68a;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      font-size: 14px;
+    }
+    .check {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), #16a34a);
+      display: inline-grid; place-items: center;
+      color: white; font-size: 12px;
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.12);
+    }
+    h1 { margin: 18px 0 10px; font-size: clamp(34px, 5vw, 58px); line-height: 1.02; }
+    p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .highlight { color: white; font-weight: 700; }
+    .order-box {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--card2), rgba(255,255,255,0.05));
+      border: 1px solid var(--line);
+    }
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .label { display:block; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .value { font-weight: 700; font-size: 16px; }
+    .cta {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #fb7185);
+      color: #111827;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 18px 35px rgba(245,158,11,0.25);
+    }
+    .side { padding: 28px; display:flex; flex-direction:column; justify-content:space-between; }
+    .brand {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #fde68a;
+      margin-bottom: 16px;
+    }
+    .plate {
+      height: 240px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.72) 32%, rgba(255,255,255,0.12) 33%, transparent 34%),
+        radial-gradient(circle at center, rgba(245,158,11,0.95), rgba(234,88,12,0.95) 42%, rgba(127,29,29,0.92) 43%, rgba(17,24,39,0.08) 62%, transparent 63%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .steam, .steam::before, .steam::after {
+      content: '';
+      position: absolute;
+      top: 26px;
+      width: 10px;
+      height: 64px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.35), transparent);
+      filter: blur(1px);
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.7;
+    }
+    .steam::before { left: -22px; top: 10px; height: 84px; }
+    .steam::after { left: 22px; top: 6px; height: 76px; }
+    .footer-note { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    @media (max-width: 800px) { .wrap { grid-template-columns: 1fr; } .hero { padding: 28px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="badge"><span class="check">✓</span> Payment received successfully</div>
+      <h1>Thank you for your payment.</h1>
+      <p>Your order has been confirmed and is now being prepared by our kitchen team. We appreciate your support and patience while we make everything fresh for you.</p>
+
+      <div class="order-box">
+        <p class="highlight">Your order will be prepared soon.</p>
+        <div class="order-grid">
+          <div class="item"><span class="label">Order number</span><span class="value">#R-28461</span></div>
+          <div class="item"><span class="label">Estimated ready time</span><span class="value">15–20 min</span></div>
+          <div class="item"><span class="label">Status</span><span class="value">In preparation</span></div>
+          <div class="item"><span class="label">Payment</span><span class="value">Completed</span></div>
+        </div>
+      </div>
+
+      <a class="cta" href="#">Back to menu →</a>
+    </section>
+
+    <aside class="side">
+      <div>
+        <div class="brand">Premium Dining</div>
+        <div class="plate"><div class="steam"></div></div>
+      </div>
+      <p class="footer-note">We’re cooking with care and attention to detail. If anything is needed, our team is ready to help.</p>
+    </aside>
+  </main>
+</body>
+</html>
